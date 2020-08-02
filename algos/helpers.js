@@ -20,6 +20,10 @@ module.exports = {
             return false;
         }
 
+        if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+            return false;
+        }
+
         let isEqual = true;
 
         for (let i = 0; i < arr1.length; i++) {

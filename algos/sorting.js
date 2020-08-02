@@ -4,13 +4,13 @@ const {
 } = require('./helpers');
 
 const [arr, sortedArr] = generateRandomArrayOfNums();
-const redBackground = '\x1b[30m"\x1b[41m';
-const greenBackground = '\x1b[30m"\x1b[42m';
+const incorrect = '\x1b[31m';
+const correct = '\x1b[32m';
 
 function printTestInConsole(fn, name) {
     let hasSameContent = hasSameContents(fn(arr), sortedArr);
 
-    console.log(hasSameContent ? greenBackground : redBackground, `${name}: ${hasSameContent}`);
+    console.log(hasSameContent ? correct : incorrect, `${name}: ${hasSameContent}`);
 }
 
 function bubbleSort() {
@@ -36,4 +36,25 @@ function bubbleSort() {
     return copiedArr;
 }
 
+function insertionSort() {
+    let copiedArr = [...arr];
+
+    for (let i = 1; i < copiedArr.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (copiedArr[i] < copiedArr[j]) {
+                const spliced = copiedArr.splice(i, 1);
+                copiedArr.splice(j, 0, spliced[0]);
+            }
+        }
+    }
+
+    return copiedArr;
+}
+
+function mergeSort() {
+    
+}
+
 printTestInConsole(bubbleSort, 'Bubble Sort');
+printTestInConsole(insertionSort, 'Insertion Sort');
+printTestInConsole(mergeSort, 'Merge Sort');
